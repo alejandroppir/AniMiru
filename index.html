@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar AniMiru</title>
+<meta name="description" content="Cómo instalar AniMiru en tu tele (Android TV / Google TV) o en tu móvil Android.">
+<meta name="theme-color" content="#0c0d0f">
+<meta property="og:title" content="Instalar AniMiru">
+<meta property="og:description" content="Anime en tu tele y tu móvil. Instálala en un par de minutos.">
+<meta property="og:image" content="https://alejandroppir.github.io/AniMiru/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ground: #0c0d0f;
+    --sheet: #16181c;
+    --raised: #20232a;
+    --text: #f3f1ec;
+    --muted: #bcb8b0;
+    --faint: #8e8a83;
+    --hair: rgba(255, 255, 255, 0.1);
+    --accent: #2cb232;
+    --on-accent: #071b08;
+    --warn: #e8a23a;
+    --radius: 18px;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--text);
+    font: 400 17px/1.6 "Zen Kaku Gothic New", system-ui, sans-serif;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+
+  header { padding: 40px 0 8px; display: flex; align-items: center; gap: 18px; }
+  header img { width: 72px; height: 72px; }
+  header .name { font-weight: 900; font-size: 28px; line-height: 1.1; }
+  header .tag { color: var(--muted); font-size: 15px; }
+
+  h1 { font-weight: 900; font-size: clamp(30px, 6vw, 44px); line-height: 1.15; margin: 32px 0 12px; letter-spacing: -0.01em; }
+  .lead { color: var(--muted); max-width: 60ch; margin: 0 0 28px; }
+
+  .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .choice {
+    background: var(--sheet); border: 1px solid var(--hair); border-radius: var(--radius);
+    padding: 22px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .choice h2 { margin: 0; font-size: 20px; font-weight: 900; }
+  .choice p { margin: 0; color: var(--muted); font-size: 15px; }
+  .choice .more { margin-top: auto; font-size: 15px; color: var(--muted); }
+
+  .code {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--raised); border-radius: 12px; padding: 10px 10px 10px 16px;
+  }
+  .code b { font-size: 34px; font-weight: 900; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; }
+  .code button, .copy {
+    font-family: inherit; font-weight: 700; font-size: 14px; line-height: 1; color: var(--text); background: transparent;
+    border: 1px solid var(--hair); border-radius: 999px; padding: 10px 14px; cursor: pointer;
+  }
+  .code button:hover, .copy:hover { border-color: var(--muted); }
+
+  .download {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--accent); color: var(--on-accent); text-decoration: none;
+    font-weight: 900; font-size: 18px; border-radius: 999px; padding: 14px 22px; min-height: 52px;
+  }
+  .download:hover { filter: brightness(1.08); }
+  .download svg { width: 22px; height: 22px; }
+
+  :focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
+  section { padding: 44px 0 4px; }
+  section h2 { font-size: 26px; font-weight: 900; margin: 0 0 6px; }
+  section > p { color: var(--muted); margin: 0 0 18px; }
+  h3 { font-size: 18px; font-weight: 700; margin: 26px 0 10px; }
+
+  ol.steps { list-style: none; counter-reset: step; padding: 0; margin: 0; display: grid; gap: 12px; }
+  ol.steps li {
+    counter-increment: step; position: relative; padding: 14px 16px 14px 60px;
+    background: var(--sheet); border: 1px solid var(--hair); border-radius: 14px;
+  }
+  ol.steps li::before {
+    content: counter(step); position: absolute; left: 16px; top: 13px;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--raised);
+    display: grid; place-items: center; font-weight: 900; font-size: 15px;
+  }
+  ol.steps .code { margin-top: 10px; }
+  strong { font-weight: 700; color: var(--text); }
+  .small { color: var(--faint); font-size: 15px; }
+
+  .note {
+    margin-top: 16px; padding: 16px 18px; border-radius: 14px;
+    background: rgba(232, 162, 58, 0.08); border: 1px solid rgba(232, 162, 58, 0.35);
+  }
+  .note b { color: var(--warn); }
+  .note p { margin: 6px 0 0; }
+
+  .link { word-break: break-all; color: var(--muted); font-size: 14px; }
+
+  footer { padding: 48px 0 40px; color: var(--faint); font-size: 14px; border-top: 1px solid var(--hair); margin-top: 48px; }
+
+  @media (max-width: 480px) {
+    body { font-size: 16px; }
+    header { padding-top: 24px; }
+    header img { width: 56px; height: 56px; }
+    .code b { font-size: 28px; }
+    .download { width: 100%; }
+    ol.steps li { padding-left: 54px; }
+    ol.steps li::before { left: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img src="assets/logo.png" alt="" width="72" height="72">
+    <div>
+      <div class="name">AniMiru</div>
+      <div class="tag">Anime en tu tele y tu móvil</div>
+    </div>
+  </header>
+
+  <h1>Cómo instalar AniMiru</h1>
+  <p class="lead">AniMiru no está en Google Play, así que se instala descargando el fichero de la app (un “APK”). Solo hay que hacerlo una vez: después la propia app te avisa cuando hay una versión nueva.</p>
+
+  <div class="choices">
+    <div class="choice">
+      <h2>En la tele</h2>
+      <p>Con la app <strong>Downloader</strong>, escribe este código:</p>
+      <div class="code"><b>2759534</b><button type="button" data-copy="2759534">Copiar</button></div>
+      <a class="more" href="#tele">Ver los pasos para la tele ↓</a>
+    </div>
+    <div class="choice">
+      <h2>En el móvil</h2>
+      <p>Toca el botón desde tu móvil Android:</p>
+      <a class="download" href="https://github.com/alejandroppir/AniMiru/releases/latest/download/AniMiru.apk">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+        Descargar AniMiru
+      </a>
+      <a class="more" href="#movil">Ver los pasos para el móvil ↓</a>
+    </div>
+  </div>
+
+  <section id="tele">
+    <h2>En la tele</h2>
+    <p>Android TV o Google TV. La forma más fácil es con la app <strong>Downloader</strong>, que sirve para descargar e instalar apps en la tele.</p>
+
+    <h3>1. Instala Downloader</h3>
+    <ol class="steps">
+      <li>En la tele, abre <strong>Google Play Store</strong> (o busca “Downloader” con el buscador de la tele).</li>
+      <li>Busca <strong>Downloader</strong> (el icono es naranja, de AFTVnews) e instálala.</li>
+    </ol>
+
+    <h3>2. Descarga AniMiru</h3>
+    <ol class="steps">
+      <li>Abre <strong>Downloader</strong>. Si te pide permiso para acceder a archivos, pulsa <strong>Permitir</strong>.</li>
+      <li>En la casilla de la dirección, escribe este código con el mando y pulsa <strong>Go</strong>:
+        <div class="code"><b>2759534</b><button type="button" data-copy="2759534">Copiar</button></div>
+        <p class="small">Si el código no funcionara, escribe el enlace de descarga del final de esta página.</p>
+      </li>
+      <li>Espera a que termine la descarga.</li>
+    </ol>
+
+    <h3>3. Instálala</h3>
+    <ol class="steps">
+      <li>Downloader abrirá el instalador. La primera vez, la tele dirá que <strong>no puede instalar apps de este origen</strong>. Pulsa <strong>Ajustes</strong>, activa <strong>Downloader</strong> y vuelve atrás con el mando.</li>
+      <li>Pulsa <strong>Instalar</strong>.</li>
+      <li>Si aparece un aviso de <strong>Play Protect</strong> diciendo que la app es desconocida, pulsa <strong>Instalar de todos modos</strong> (puede estar en “Más detalles”).</li>
+      <li>Cuando termine, pulsa <strong>Listo</strong>. Downloader te ofrecerá <strong>borrar</strong> el fichero descargado: dile que sí, ya no hace falta.</li>
+    </ol>
+    <p class="small" style="margin-top:14px">AniMiru aparecerá en la lista de apps de la tele. Para tenerla a mano, añádela a favoritos desde la pantalla de inicio.</p>
+
+    <div class="note">
+      <b>¿No te sale la opción de permitir a Downloader?</b>
+      <p>En algunos Google TV hay que activar antes el modo desarrollador: ve a <strong>Ajustes → Sistema → Información</strong>, baja hasta <strong>Compilación del SO de Android TV</strong> y pulsa OK sobre ella <strong>7 veces</strong>. Después ve a <strong>Ajustes → Aplicaciones → Seguridad y restricciones → Fuentes desconocidas</strong> y activa <strong>Downloader</strong>.</p>
+    </div>
+  </section>
+
+  <section id="movil">
+    <h2>En el móvil</h2>
+    <p>Solo Android: los iPhone no sirven.</p>
+    <ol class="steps">
+      <li>Abre el enlace de descarga desde el móvil:
+        <div style="margin-top:12px"><a class="download" href="https://github.com/alejandroppir/AniMiru/releases/latest/download/AniMiru.apk">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>
+          Descargar AniMiru
+        </a></div>
+      </li>
+      <li>Cuando termine, toca la notificación de <strong>descarga completada</strong> (o abre <strong>Archivos → Descargas</strong> y toca <strong>AniMiru.apk</strong>).</li>
+      <li>La primera vez, el móvil dirá que no permite instalar apps de ese origen. Toca <strong>Ajustes</strong>, activa <strong>Permitir de esta fuente</strong> y vuelve atrás.</li>
+      <li>Toca <strong>Instalar</strong>. Si sale el aviso de <strong>Play Protect</strong>, toca <strong>Más detalles → Instalar de todos modos</strong>.</li>
+    </ol>
+  </section>
+
+  <section id="actualizaciones">
+    <h2>Actualizaciones</h2>
+    <p>No tienes que volver a descargar nada. Cuando haya una versión nueva, AniMiru te lo dirá al abrirla: pulsa <strong>Actualizar</strong> y después <strong>Instalar</strong>. La primera vez la tele o el móvil te pedirán permitir que AniMiru instale apps (igual que hiciste con Downloader); actívalo y vuelve atrás.</p>
+    <p>Tu lista y tu progreso se conservan al actualizar. <strong>No desinstales la app</strong> para actualizarla: al desinstalar se borran.</p>
+  </section>
+
+  <footer>
+    <p>Enlace de descarga directo:</p>
+    <p class="link">https://github.com/alejandroppir/AniMiru/releases/latest/download/AniMiru.apk <button type="button" class="copy" data-copy="https://github.com/alejandroppir/AniMiru/releases/latest/download/AniMiru.apk">Copiar</button></p>
+  </footer>
+
+</div>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (button) {
+    button.addEventListener('click', function () {
+      var done = function () { button.textContent = 'Copiado'; setTimeout(function () { button.textContent = 'Copiar'; }, 1500); };
+      try { navigator.clipboard.writeText(button.dataset.copy).then(done, function () {}); } catch (e) {}
+    });
+  });
+</script>
+</body>
+</html>
