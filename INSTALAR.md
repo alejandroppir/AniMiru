@@ -6,6 +6,8 @@ Solo hay que hacerlo una vez: después la propia app te avisa cuando hay una ver
 **Enlace de descarga:**
 https://github.com/alejandroppir/AniMiru/releases/latest/download/AniMiru.apk
 
+**En la tele, con Downloader, basta el código:** `2759534`
+
 ---
 
 ## En la tele (Android TV o Google TV)
@@ -20,8 +22,12 @@ La forma más fácil es con la app **Downloader**, que sirve para descargar e in
 ### 2. Descarga AniMiru
 
 1. Abre **Downloader**. Si te pide permiso para acceder a archivos, pulsa **Permitir**.
-2. En la casilla de la dirección, escribe el enlace de descarga de arriba con el mando y pulsa **Go**.
-   <!-- Si creas un código corto de Downloader, ponlo aquí: "o escribe el código: 000000" -->
+2. En la casilla de la dirección, escribe este código con el mando y pulsa **Go**:
+
+   **2759534**
+
+   (Si el código no funcionara, escribe el enlace de descarga de arriba.)
+
 3. Espera a que termine la descarga.
 
 ### 3. Instálala
